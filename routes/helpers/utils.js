@@ -8,6 +8,8 @@ function generateUserToken(user){
             firstName: user.firstName,
             middleName: user.middleName,
             lastName: user.lastName,
+
+            isAdmin: user.isAdmin,
         },
         process.env.SECRET,
         {
@@ -32,6 +34,7 @@ function verifyUserToken(req, res, next){
                     res.status(401).send({ message: "Invalid Token" });
                 } else {
                     req.user = decode;
+                    console.log(decode);
                     next();
                 }
             }
@@ -41,7 +44,17 @@ function verifyUserToken(req, res, next){
     }
 }
 
+/* Verify if user is admin */
+function verifyAdmin(req, res, next){
+    if(req.user && req.user.isAdmin){
+        next();
+    }else{
+        res.status(401).send({ message: 'Invalid Admin Token' });
+    }
+}
+
 module.exports = {
     generateUserToken,
     verifyUserToken,
+    verifyAdmin,
 }

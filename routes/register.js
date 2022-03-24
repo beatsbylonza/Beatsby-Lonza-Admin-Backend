@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const bcrypt = require('bcryptjs');
-const User = require('../models/user');
+const User = require('../models/user-model');
 const { generateUserToken } = require('./helpers/utils');
 
 /* Register API */
@@ -50,6 +50,7 @@ async function createUser(req, res){
 	const user = await User.create({
 		...req.body,
 		password: await bcrypt.hash(req.body.password, 8),
+		isAdmin: false,
 	});
 
 	if(user){
