@@ -10,7 +10,16 @@ router.post('/',
 
 /* Check if all the required form inputs are filled */
 function registerCheckInputInputs(req, res, next) {
-	const {email, username, password, firstName, lastName, middleName} = req.body;
+	const {
+		email, 
+		username, 
+		password, 
+		firstName, 
+		lastName, 
+		middleName,
+		address,
+		contactNumber
+	} = req.body;
 
 	if(
 		email && 
@@ -18,9 +27,10 @@ function registerCheckInputInputs(req, res, next) {
 		password && 
 		firstName && 
 		lastName && 
-		middleName
+		middleName && 
+		address &&
+		contactNumber
 	){
-		
 		next();
 	}else {
 		res.status(404).send({
@@ -63,8 +73,7 @@ async function createUser(req, res){
 			message: 'Error creating user please try again...'
 		});
 	}
-}
-);
+});
 
 /* END OF Register API */
 

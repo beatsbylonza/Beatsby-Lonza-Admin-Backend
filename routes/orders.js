@@ -24,7 +24,7 @@ async function getOrders(req, res){
 
     res.send({
         message : 'Successfully fetch all the orders!',
-        orders,
+        data: orders,
     });
 
 }
