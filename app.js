@@ -7,6 +7,8 @@ const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const ordersRouter = require('./routes/orders');
+const customersRouter = require('./routes/customers');
+const productsRouter = require('./routes/products');
 
 const app = express();
 
@@ -27,12 +29,19 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
 app.use('/api/orders', ordersRouter);
+app.use('/api/customers', customersRouter);
+app.use('/api/products', productsRouter);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 
 
 module.exports = app;
