@@ -9,18 +9,18 @@ const { generateUserToken } = require('./helpers/utils');
 router.post('/',
 
 /* Check if all the required form inputs are filled */
-function registerCheckInputInputs(req, res, next) {
-	const {email, username, password, firstName, lastName, middleName} = req.body;
+function validateRequiredFielsd(req, res, next) {
 
 	if(
-		email && 
-		username && 
-		password && 
-		firstName && 
-		lastName && 
-		middleName
+		req.body.email && 
+		req.body.username && 
+		req.body.password && 
+		req.body.firstName && 
+		req.body.lastName && 
+		req.body.middleName && 
+		req.body.address &&
+		req.body.contactNumber
 	){
-		
 		next();
 	}else {
 		res.status(404).send({
@@ -63,8 +63,7 @@ async function createUser(req, res){
 			message: 'Error creating user please try again...'
 		});
 	}
-}
-);
+});
 
 /* END OF Register API */
 

@@ -18,13 +18,13 @@ verifyUserToken,
 verifyAdmin,
 
 /* Add Order */
-async function getOrders(req, res){
+async function getAllOrders(req, res){
 
     const orders = await Order.find();
 
     res.send({
         message : 'Successfully fetch all the orders!',
-        orders,
+        data: orders,
     });
 
 }
