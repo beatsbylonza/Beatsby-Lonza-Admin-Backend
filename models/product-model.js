@@ -7,9 +7,16 @@ const productSchema = new mongoose.Schema({
     colors: { type: [String], required: true},
 
     description: String,
-    imageUrls: { type: [String], required: true},
     
-    price: {type: Number, required: true},
+    image_urls: { type: [String], required: true},
+    
+    price: { 
+        type : {
+            value : { type: Schema.Types.Decimal128, required: true},
+            currency: { type: String, required: true }, 
+        },
+        required : true
+    },
 
     sizes: [String],
 
