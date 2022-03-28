@@ -5,6 +5,8 @@ function generateUserToken(user){
     return jwt.sign(
         {
             _id: user._id,
+            email: user.email,
+            contactNumber: user.contactNumber,
             firstName: user.firstName,
             middleName: user.middleName,
             lastName: user.lastName,
