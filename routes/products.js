@@ -37,17 +37,17 @@ verifyAdmin,
 function validateRequiredFields(req, res, next){
 
     if(
-        req.body.name && 
-        req.body.categories && 
-        req.body.colors && 
-        req.body.description && 
-        req.body.imageUrls && 
-        req.body.price && 
-        req.body.sizes && 
-        req.body.stock && 
-        req.body.sold && 
-        req.body.available && 
-        req.body.sales 
+        req.body.name === undefined && 
+        req.body.categories === undefined && 
+        req.body.colors === undefined && 
+        req.body.description === undefined && 
+        req.body.imageUrls === undefined && 
+        req.body.price === undefined && 
+        req.body.sizes === undefined && 
+        req.body.stock === undefined && 
+        req.body.sold === undefined && 
+        req.body.available === undefined && 
+        req.body.sales === undefined
     ){
         next();
     }else{
