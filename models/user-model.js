@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
 	email: {type: String, required: true },
 	contactNumber: {type: String, required: true},
 
@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema({
 			street: { type: String, required: true },
 			zipcode: { type: String, required: true },
 		},
+		
+		_id: false,
 		required: true,
 	},
 
@@ -42,6 +44,7 @@ const userSchema = new mongoose.Schema({
 						product_id: { type: Schema.Types.ObjectId, required: true },
 					},
 					
+					_id: false,
 					required: true,
 				},
 				
@@ -55,4 +58,4 @@ const userSchema = new mongoose.Schema({
 	
 },{timestamps:  true});
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = model('User', userSchema);

@@ -14,10 +14,13 @@ const cartSchema = new Schema({
                     value : { type: Schema.Types.Decimal128, required: true},
                     currency: { type: String, required: true }, 
                 },
+
+                _id: false,
                 required : true
             },
         },
         
+        _id: false,
         required: true,
     },
     

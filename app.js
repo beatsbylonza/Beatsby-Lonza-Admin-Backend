@@ -3,12 +3,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const ordersRouter = require('./routes/orders');
 const customersRouter = require('./routes/customers');
 const productsRouter = require('./routes/products');
+const cartRouter = require('./routes/cart');
 
 const app = express();
 
@@ -35,6 +35,7 @@ app.use('/api/register', registerRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/customers', customersRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/carts', cartRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 

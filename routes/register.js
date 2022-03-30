@@ -3,13 +3,13 @@ const router = express.Router();
 
 const bcrypt = require('bcryptjs');
 const User = require('../models/user-model');
-const { generateUserToken } = require('./helpers/utils');
+const { generateUserToken } = require('../helpers/validators');
 
 /* Register API */
 router.post('/',
 
 /* Check if all the required form inputs are filled */
-function validateRequiredFielsd(req, res, next) {
+function validateRequiredFields(req, res, next) {
 
 	if(
 		req.body.email && 

@@ -1,5 +1,8 @@
 const express = require('express');
-const { verifyUserToken, verifyAdmin } = require('./helpers/utils');
+const { verifyUserToken, verifyAdmin } = require('../helpers/validators');
+const { check, validationResult } = require('express-validator');
+
+
 const Product = require('../models/product-model');
 
 
@@ -31,32 +34,33 @@ async function getAllProducts(req, res){
 router.post('/add',
 
 /** Validation */
+
+check('name').exists().isLength({min : 2}),
+check('categories').exists(),
+check('colors').exists(),
+check('description').exists(),
+check('imageUrls').exists(),
+check('price.value').exists(),
+check('price.currency').exists(),
+check('sizes','empty').exists(),
+check('stock').exists(),
+check('sold').exists(),
+check('available').exists(),
+check('sales').exists(),
+
+function (req, res, next){
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: 'Invalid input please check all the required' });
+    }else{
+        next();
+    }
+},
+
 verifyUserToken,
 verifyAdmin,
-
-function validateRequiredFields(req, res, next){
-
-    if(
-        req.body.name === undefined && 
-        req.body.categories === undefined && 
-        req.body.colors === undefined && 
-        req.body.description === undefined && 
-        req.body.imageUrls === undefined && 
-        req.body.price === undefined && 
-        req.body.sizes === undefined && 
-        req.body.stock === undefined && 
-        req.body.sold === undefined && 
-        req.body.available === undefined && 
-        req.body.sales === undefined
-    ){
-        next();
-    }else{
-        res.status(401).send({
-            message : 'Error please input all the required fields'
-        })
-    }
-    
-},
 
 async function addProduct(req, res){
 
@@ -73,6 +77,7 @@ async function addProduct(req, res){
             message: 'Failed to create the product..',
         })
     }
+
 },
 
 

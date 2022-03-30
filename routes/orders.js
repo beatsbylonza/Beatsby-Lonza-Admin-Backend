@@ -1,5 +1,5 @@
 const express = require('express');
-const { verifyUserToken, verifyAdmin } = require('./helpers/utils');
+const { verifyUserToken, verifyAdmin } = require('../helpers/validators');
 
 const Order = require('../models/order-model');
 

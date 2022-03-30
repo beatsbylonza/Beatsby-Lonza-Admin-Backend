@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/user-model');
+
 
 /* GENERATE user token */
 function generateUserToken(user){
@@ -54,8 +56,24 @@ function verifyAdmin(req, res, next){
     }
 }
 
+/* Validate if user is existing */
+async function verifyIfUserIsExistingInDatabase(req, res, next){
+    const user = await User.findById(req.user._id);
+    if(user){
+        req.user = user;
+        next();
+    }else{
+        res.status(401).send({ message: 'Error User does not exist...' });
+    }
+}
+
+
+
 module.exports = {
+    verifyIfUserIsExistingInDatabase,
     generateUserToken,
     verifyUserToken,
     verifyAdmin,
 }
+
+/** Validate if user is existing in database */
