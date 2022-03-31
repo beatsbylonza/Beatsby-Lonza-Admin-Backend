@@ -32,7 +32,7 @@ async function getAllProducts(req, res){
 
 );
 
-router.put('/:id',
+router.get('/:id',
 
 /** Validation */
 // verifyUserToken,
