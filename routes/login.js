@@ -27,13 +27,14 @@ async function loginUser(req, res){
 
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, isAdmin : true });
 
     if(user){
         if( await bcrypt.compare(password, user.password)){
             res.send({
                 message: 'Successfully login user!!',
                 token: generateUserToken(user),
+                data: user,
             })
         }else{
             res.status(401).send({
