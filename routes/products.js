@@ -2,6 +2,7 @@ const express = require('express');
 const { verifyUserToken, verifyAdmin } = require('../helpers/validators');
 const { check, validationResult, param } = require('express-validator');
 
+const fs = require('fs');
 
 const Product = require('../models/product-model');
 
@@ -31,6 +32,46 @@ async function getAllProducts(req, res){
 
 );
 
+router.put('/:id',
+
+/** Validation */
+// verifyUserToken,
+// verifyAdmin,
+
+param('id').exists().isLength({min : 24, max: 24}),
+
+function (req, res, next){
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: 'Invalid input please check all the required' });
+    }else{
+        next();
+    }
+
+},
+
+
+async function getProduct(req, res){
+    const { id } = req.params;
+
+    const product = await Product.findById(id);
+
+    if(product){
+        res.send({
+            message: 'Succesfully fetch product id...',
+            data: product,
+        })
+    }else{
+        res.status(401).send({
+            message: 'Cannot find the product',
+        })
+    }
+}
+
+);
+
 router.delete('/remove/:id',
 
 /** Validators */
@@ -54,9 +95,19 @@ verifyAdmin,
 async function deleteProduct(req, res){
     const { id } = req.params;
 
-    const product = await Product.deleteOne({_id: id});
+    const product = await Product.findByIdAndDelete(id);
 
-    if(product.deletedCount == 1){
+    if(product){
+
+        const imageUrl = 'public/images/products/'  + product.imageUrl.substring(product.imageUrl.lastIndexOf('/') + 1);
+
+        fs.stat(imageUrl, function(err, stat){
+            if(err === null){
+                fs.unlinkSync(imageUrl);
+            }
+        });
+
+
         res.send({message: 'Successfully remove product!'});
     }else{
         res.status(400).send({message: 'Cannot remove the product'});
@@ -120,9 +171,7 @@ async function addProduct(req, res){
             currency: 'PHP',
         },
         
-        stock: 0,
         sold: 0,
-        available: 0,
         sales: 0,
 
     });
