@@ -3,5 +3,5 @@
 
 package-lock.json
 
-public/images/*
+public/images/products/*
 !public/images/products/README.md
