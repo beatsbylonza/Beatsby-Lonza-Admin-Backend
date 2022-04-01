@@ -32,11 +32,13 @@ async function getAllProducts(req, res){
 
 );
 
+
+/** Get Product */
 router.get('/:id',
 
 /** Validation */
-// verifyUserToken,
-// verifyAdmin,
+verifyUserToken,
+verifyAdmin,
 
 param('id').exists().isLength({min : 24, max: 24}),
 
@@ -72,7 +74,7 @@ async function getProduct(req, res){
 
 );
 
-router.delete('/remove/:id',
+router.delete('/:id',
 
 /** Validators */
 param('id').exists().isLength({min: 24, max: 24}),
@@ -160,6 +162,7 @@ verifyUserToken,
 verifyAdmin,
 
 
+
 async function addProduct(req, res){
     const imageUrl = `${req.protocol}://${req.get('host')}/images/products/${req.file.filename}`;
 
@@ -190,5 +193,86 @@ async function addProduct(req, res){
 
 
 );
+
+
+
+/** Update Product */
+router.put('/:id',
+
+/** Upload  */
+upload.single('image'),
+
+/** Validation */
+check('name').exists().isLength({min : 2}),
+check('category').exists(),
+check('color').exists(),
+check('description').exists(),
+check('size').exists(),
+check('price').exists(),
+
+param('id').exists().isLength({min : 24, max: 24}),
+
+function (req, res, next){
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: 'Invalid input please check all the required' });
+    }else{
+        next();
+    }
+
+},
+
+/** Validation */
+verifyUserToken,
+verifyAdmin,
+
+
+async function updateProduct(req, res, next){
+    const { id } = req.params;
+
+
+    const product = await Product.findOneAndUpdate({_id: id}, {
+        ...req.body,
+        price: {
+            value: req.body.price,
+            currency: 'PHP',
+        },
+    });
+
+
+    if(product){
+        req.product = product;
+        next();
+    }else{
+        res.status(401).send({
+            message: 'Failed to create the product..',
+        })
+    }
+},
+
+async function deleteProductImage(req, res){
+
+    if(req.file){
+        const imageUrl = 'public/images/products/'  + req.product.imageUrl.substring(req.product.imageUrl.lastIndexOf('/') + 1);
+    
+        fs.stat(imageUrl, async function(err, stat){
+            if(err === null){
+                fs.unlinkSync(imageUrl);
+                const newImageUrl = `${req.protocol}://${req.get('host')}/images/products/${req.file.filename}`;
+                req.product.imageUrl = newImageUrl;
+                await req.product.save();
+            }
+        });
+    }
+
+    res.send({
+        message: 'Successfully update the product!!',
+    });
+}
+
+);
+
 
 module.exports = router;
