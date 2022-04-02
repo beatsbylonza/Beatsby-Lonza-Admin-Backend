@@ -9,6 +9,10 @@ const cartSchema = new Schema({
             product_id: { type: Schema.Types.ObjectId, required: true },
 
             name: { type: String, required: true },
+            imageUrl: { type: String, required: true},
+            size: {type: String, required: true},
+            color: { type: String, required: true},
+
             price: { 
                 type : {
                     value : { type: Schema.Types.Decimal128, required: true},
@@ -24,6 +28,7 @@ const cartSchema = new Schema({
         required: true,
     },
     
+    is_enabled: {type: Boolean, required: true},
     quantity: {type: Number, required: true},
 }, { timestamps: true });
 

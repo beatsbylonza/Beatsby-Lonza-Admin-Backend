@@ -33,8 +33,55 @@ async function getUserCart(req, res){
 
 );
 
+/** Update cart quantity */
+router.put('/:id',
+
+/** Validator */
+check('quantity').exists(),
+check('isEnabled').exists(),
+
+param('id').exists().isLength({max : 24, min : 24}),
+
+function (req, res, next){
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ message: 'Invalid parameter ID' });
+    }else{
+        next();
+    }
+},
+
+verifyUserToken,
+
+async function updateCartQuantity(req, res){
+    const { id } = req.params;
+    const user = req.user;
+
+
+    const cart = await Cart.findOne({_id: id, user_id: user._id});
+
+    if(cart){
+        cart.quantity = req.body.quantity;
+        cart.is_enabled = req.body.isEnabled;
+
+        await cart.save();
+
+        res.send({
+            message: 'Successfully update cart!',
+        });
+    }else{
+        res.status(401).send({
+            message: 'Updating cart quantity fails, cannot find cart',
+        })
+    }
+}
+
+);
+
 /** Remove product to cart */
-router.delete('/remove/:id',
+router.delete('/:id',
 
 /** Validators */
 param('id').exists().isLength({min: 24, max: 24}),
@@ -87,7 +134,22 @@ function (req, res, next){
 verifyUserToken,
 verifyIfUserIsExistingInDatabase,
 
+/** Check if product is already existing in cart */
+async function checkIfCartIsAlreadyExisting(req, res, next){
+    const user = req.user;
+    const { product_id } = req.body;
 
+    const cart = await Cart.findOne({ user_id: user._id ,'product.product_id' :  product_id });
+
+    if(cart){
+        res.status(401).send({message : 'Product already exists in cart'});
+    }else{
+        next();
+    }
+},
+
+
+/** Create new cart model and add it to user model carts */
 async function createNewCart(req, res, next){
 
     const { product_id, quantity } = req.body;
@@ -100,9 +162,16 @@ async function createNewCart(req, res, next){
 
             product:{
                 product_id: product._id,
+
                 name: product.name,
+                imageUrl: product.imageUrl,
+                size: product.size,
+                color: product.color,
+
                 price: product.price,
             },
+            
+            is_enabled: true,
             quantity,
         });
 

@@ -11,6 +11,7 @@ const userSchema = new Schema({
 	middleName: { type: String, required: true },
 	lastName: { type: String, required: true },
 
+	/** Address */
 	address: {
 		type : {
 			city: { type: String, required: true },
@@ -31,17 +32,22 @@ const userSchema = new Schema({
 
 				product: {
 					type : {
+						product_id: { type: Schema.Types.ObjectId, required: true },
+
 						name: { type: String, required: true },
+						imageUrl: { type: String, required: true},
+						size: {type: String, required: true},
+						color: { type: String, required: true},
 			
 						price: { 
 							type : {
 								value : { type: Schema.Types.Decimal128, required: true},
 								currency: { type: String, required: true }, 
 							},
+
+                			_id: false,
 							required : true
 						},
-			
-						product_id: { type: Schema.Types.ObjectId, required: true },
 					},
 					
 					_id: false,
@@ -54,7 +60,7 @@ const userSchema = new Schema({
 		required: true,
 	},
 
-	isAdmin: { type: Boolean }
+	is_admin: { type: Boolean }
 	
 },{timestamps:  true});
 

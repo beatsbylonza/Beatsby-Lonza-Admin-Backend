@@ -13,7 +13,7 @@ function generateUserToken(user){
             middleName: user.middleName,
             lastName: user.lastName,
 
-            isAdmin: user.isAdmin,
+            is_admin: user.is_admin,
         },
         process.env.SECRET,
         {
@@ -49,7 +49,7 @@ function verifyUserToken(req, res, next){
 
 /* Verify if user is admin */
 function verifyAdmin(req, res, next){
-    if(req.user && req.user.isAdmin){
+    if(req.user && req.user.is_admin){
         next();
     }else{
         res.status(401).send({ message: 'Invalid Admin Token' });

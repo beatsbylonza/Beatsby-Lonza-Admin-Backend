@@ -4,10 +4,10 @@ const productSchema = new Schema({
 	name: { type: String, required: true },
 
     category: { type: String, required: true},
+    
     description: String,
 
     imageUrl: { type: String, required: true},
-    
     color: { type: String, required: true},
     
     
@@ -21,7 +21,7 @@ const productSchema = new Schema({
         required : true,
     },
 
-    size: String,
+    size: {type: String, required: true},
 
     stock: {type: Number, required: true},
     sold: {type: Number, required: true},

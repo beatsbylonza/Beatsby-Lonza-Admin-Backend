@@ -14,8 +14,40 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 mongoose.connect(process.env.DATABASE).then(()=>{
+  createSuperAdmin();
   console.log('Database has been connected!!');
 });
+
+
+async function createSuperAdmin(){
+  const User = require('../models/user-model');
+  const bcrypt = require('bcryptjs');
+  
+
+  const user = await User.find();
+
+  if(user.length == 0){
+    console.log('Super admin created!!');
+
+    User.create({
+      email : "admin@admin.com",
+      password: bcrypt.hashSync('12345', 8),
+      username : "admin",
+      firstName : "Admin",
+      middleName : "Admin",
+      lastName : "Admin",
+      contactNumber : "09084741500",
+      address : {
+          city : "Manila",
+          state : "Metro Manila",
+          street : "Lakandula Street",
+          zipcode : "1012"
+      },
+      is_admin: true,
+    });
+  }
+
+}
 
 /**
  * Get port from environment and store in Express.

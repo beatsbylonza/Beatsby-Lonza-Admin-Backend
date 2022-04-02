@@ -50,7 +50,7 @@ async function createUser(req, res){
 	const user = await User.create({
 		...req.body,
 		password: await bcrypt.hash(req.body.password, 8),
-		isAdmin: false,
+		is_admin: false,
 	});
 
 	if(user){

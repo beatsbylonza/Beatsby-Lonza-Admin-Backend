@@ -13,10 +13,10 @@ router.get('/',
 
 /** Validation */
 verifyUserToken,
-verifyAdmin,
 
 async function getAllProducts(req, res){
     const products = await Product.find().sort({createdAt : -1});
+    
 
     if(products){
         res.send({
@@ -38,7 +38,6 @@ router.get('/:id',
 
 /** Validation */
 verifyUserToken,
-verifyAdmin,
 
 param('id').exists().isLength({min : 24, max: 24}),
 
@@ -74,6 +73,8 @@ async function getProduct(req, res){
 
 );
 
+
+/** Delete Product */
 router.delete('/:id',
 
 /** Validators */

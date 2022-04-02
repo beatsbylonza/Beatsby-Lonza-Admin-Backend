@@ -1,11 +1,34 @@
 const {Schema, model} = require('mongoose');
 
 const orderSchema = new Schema({
-	productId : { type: String, required: true },
-    customerId: { type: String, required: true },
-    quantity: { type: String, required: true },
-    deliveryAddress: { type: String, required: true },
-    status: {type: String, required: true},
+    transaction_id: {type: Schema.Types.ObjectId, required: true},
+    
+    /** PRODUCT DOCUMENT */
+    product: {
+        type : {
+            product_id: { type: Schema.Types.ObjectId, required: true },
+
+            name: { type: String, required: true },
+            imageUrl: { type: String, required: true},
+            size: {type: String, required: true},
+            color: { type: String, required: true},
+            
+            price: { 
+                type : {
+                    value : { type: Schema.Types.Decimal128, required: true},
+                    currency: { type: String, required: true }, 
+                },
+
+                _id: false,
+                required : true
+            },
+        },
+        
+        _id: false,
+        required: true,
+    },
+
+    quantity: { type: Number, required: true },
 },{
     timestamps: true,
 });
