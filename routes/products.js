@@ -142,10 +142,11 @@ upload.single('image'),
 /** Validation */
 check('name').exists().isLength({min : 2}),
 check('category').exists(),
-check('color').exists(),
 check('description').exists(),
-check('size').exists(),
 check('price').exists(),
+
+check('sizes').exists(),
+check('colors').exists(),
 
 function (req, res, next){
 
@@ -165,10 +166,15 @@ verifyAdmin,
 
 
 async function addProduct(req, res){
+
     const imageUrl = `${req.protocol}://${req.get('host')}/images/products/${req.file.filename}`;
 
     const product = await Product.create({
         ...req.body,
+
+        sizes: JSON.parse(req.body.sizes),
+        colors: JSON.parse(req.body.colors),
+
         imageUrl,
         price: {
             value: req.body.price,
@@ -206,12 +212,13 @@ upload.single('image'),
 /** Validation */
 check('name').exists().isLength({min : 2}),
 check('category').exists(),
-check('color').exists(),
 check('description').exists(),
-check('size').exists(),
 check('price').exists(),
 
 param('id').exists().isLength({min : 24, max: 24}),
+
+check('sizes').exists(),
+check('colors').exists(),
 
 function (req, res, next){
 
@@ -236,6 +243,10 @@ async function updateProduct(req, res, next){
 
     const product = await Product.findOneAndUpdate({_id: id}, {
         ...req.body,
+        
+        sizes: JSON.parse(req.body.sizes),
+        colors: JSON.parse(req.body.colors),
+
         price: {
             value: req.body.price,
             currency: 'PHP',

@@ -10,9 +10,7 @@ const productSchema = new Schema({
     imageUrl: { type: String, required: true},
 
     colors: { 
-        type : [
-            { type: String, required: true}
-        ], 
+        type: [String], 
         required: true
     },
     
@@ -28,12 +26,7 @@ const productSchema = new Schema({
     },
 
     sizes: {
-        type: [
-            {
-                type: String, 
-                required: true
-            }
-        ], 
+        type: [String], 
         required: true
     },
 
