@@ -8,6 +8,7 @@ function generateUserToken(user){
         {
             _id: user._id,
             email: user.email,
+            username: user.username,
             contactNumber: user.contactNumber,
             firstName: user.firstName,
             middleName: user.middleName,
