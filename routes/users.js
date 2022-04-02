@@ -36,10 +36,11 @@ verifyUserToken,
 
 
 async function updateUser(req, res){
-    const user = await User.findOneAndUpdate({_id: req.user._id}, {
+    await User.updateOne({_id: req.user._id}, {
         ...req.body,
     });
-
+    const user = await User.findById(req.user._id);
+    
     if(user){
         res.send({
             message: 'Successfully update user!',
