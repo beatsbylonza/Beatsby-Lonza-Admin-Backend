@@ -5,6 +5,7 @@ const logger = require('morgan');
 
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
+const usersRouter = require('./routes/users');
 const ordersRouter = require('./routes/orders');
 const customersRouter = require('./routes/customers');
 const productsRouter = require('./routes/products');
@@ -32,6 +33,7 @@ app.use(cookieParser());
 
 app.use('/api/login', loginRouter);
 app.use('/api/register', registerRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/customers', customersRouter);
 app.use('/api/products', productsRouter);

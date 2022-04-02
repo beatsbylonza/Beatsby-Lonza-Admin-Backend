@@ -8,7 +8,13 @@ const productSchema = new Schema({
     description: String,
 
     imageUrl: { type: String, required: true},
-    color: { type: String, required: true},
+
+    colors: { 
+        type : [
+            { type: String, required: true}
+        ], 
+        required: true
+    },
     
     
     price: { 
@@ -21,7 +27,15 @@ const productSchema = new Schema({
         required : true,
     },
 
-    size: {type: String, required: true},
+    sizes: {
+        type: [
+            {
+                type: String, 
+                required: true
+            }
+        ], 
+        required: true
+    },
 
     stock: {type: Number, required: true},
     sold: {type: Number, required: true},

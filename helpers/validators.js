@@ -12,6 +12,7 @@ function generateUserToken(user){
             firstName: user.firstName,
             middleName: user.middleName,
             lastName: user.lastName,
+            address: user.address,
 
             is_admin: user.is_admin,
         },
