@@ -132,10 +132,20 @@ async function checkIfCartIsAlreadyExisting(req, res, next){
     const user = req.user;
     const { product_id } = req.body;
 
-    const cart = await Cart.findOne({ user_id: user._id ,'product.product_id' :  product_id });
+    const cart = await Cart.findOne({ 
+        user_id: user._id ,'product.product_id' :  product_id,
+        size: req.body.size,
+        color: req.body.color,
+    });
 
     if(cart){
-        res.status(401).send({message : 'Product already exists in cart'});
+        cart.quantity += cart.quantity;
+        await cart.save();
+        
+        res.send({
+            message: 'Successfully added product to cart...',
+        })
+        /** Update TOP 10 cart */
     }else{
         next();
     }
