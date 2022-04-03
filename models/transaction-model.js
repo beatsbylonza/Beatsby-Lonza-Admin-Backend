@@ -5,7 +5,18 @@ const transactionSchema = new Schema({
 
     purchase_amount: { type: Number, required: true},
     
-    delivery_address: {type: String, required: true},
+	/** Address */
+	delivery_address: {
+		type : {
+			city: { type: String, required: true },
+			state: { type: String, required: true },
+			street: { type: String, required: true },
+			zipcode: { type: String, required: true },
+		},
+		
+		_id: false,
+		required: true,
+	},
 
     mode_of_payment: {type: String, required: true},
 

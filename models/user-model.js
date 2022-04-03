@@ -35,9 +35,9 @@ const userSchema = new Schema({
 						product_id: { type: Schema.Types.ObjectId, required: true },
 
 						name: { type: String, required: true },
-						imageUrl: { type: String, required: true},
-						size: {type: String, required: true},
-						color: { type: String, required: true},
+						imageUrl: { type: String, required: true },
+						sizes: { type: [String], required: true },
+						colors: { type: [String], required: true},
 			
 						price: { 
 							type : {

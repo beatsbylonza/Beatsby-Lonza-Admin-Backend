@@ -16,19 +16,12 @@ verifyUserToken,
 
 async function getUserCart(req, res){
 
-    if(req.user._id == undefined || req.user._id == ''){
-        res.status(401).send({
-            message: 'Invalid user...'
-        });
-    }else{
-        const cart = await Cart.find({user_id : req.user._id});
+    const cart = await Cart.find({user_id : req.user._id});
 
-        res.send({
-            message: 'Successfully fetch user cart!',
-            data: cart,
-        })
-    }
-
+    res.send({
+        message: 'Successfully fetch user cart!',
+        data: cart,
+    });
 }
 
 );
@@ -118,6 +111,8 @@ router.post('/add',
 
 /** Validators */
 check('product_id').exists(),
+check('size').exists(),
+check('color').exists(),
 check('quantity').exists().isInt().custom((value, {req}) => value > 0),
 
 function (req, res, next){
@@ -165,8 +160,9 @@ async function createNewCart(req, res, next){
 
                 name: product.name,
                 imageUrl: product.imageUrl,
-                size: product.size,
-                color: product.color,
+
+                size: req.body.size,
+                color: req.body.color,
 
                 price: product.price,
             },

@@ -9,6 +9,21 @@ const Product = require('../models/product-model');
 
 const router = express.Router();
 
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb){
+        cb(null, 'public/images/products');
+    },
+
+    filename: function (req, file, cb){
+        cb(null, Date.now() + ".png");
+    },
+});
+
+const upload = multer({ storage : storage });
+
+/** Get All Products */
 router.get('/',
 
 /** Validation */
@@ -31,7 +46,6 @@ async function getAllProducts(req, res){
 }
 
 );
-
 
 /** Get Product */
 router.get('/:id',
@@ -72,7 +86,6 @@ async function getProduct(req, res){
 }
 
 );
-
 
 /** Delete Product */
 router.delete('/:id',
@@ -119,21 +132,7 @@ async function deleteProduct(req, res){
 
 );
 
-const multer = require('multer');
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb){
-        cb(null, 'public/images/products');
-    },
-
-    filename: function (req, file, cb){
-        cb(null, Date.now() + ".png");
-    },
-});
-
-const upload = multer({ storage : storage });
-
-
+/** Add Product */
 router.post('/add',
 
 /** Upload  */
@@ -169,11 +168,14 @@ async function addProduct(req, res){
 
     const imageUrl = `${req.protocol}://${req.get('host')}/images/products/${req.file.filename}`;
 
+    const parsedSizes = JSON.parse(req.body.sizes);
+    const parsedColors = JSON.parse(req.body.colors);
+
     const product = await Product.create({
         ...req.body,
 
-        sizes: JSON.parse(req.body.sizes),
-        colors: JSON.parse(req.body.colors),
+        sizes: parsedSizes,
+        colors: parsedColors,
 
         imageUrl,
         price: {
@@ -200,8 +202,6 @@ async function addProduct(req, res){
 
 
 );
-
-
 
 /** Update Product */
 router.put('/:id',
