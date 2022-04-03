@@ -31,7 +31,7 @@ router.put('/:id',
 
 /** Validator */
 check('quantity').exists(),
-check('isEnabled').exists(),
+check('is_enabled').exists(),
 
 param('id').exists().isLength({max : 24, min : 24}),
 
@@ -63,6 +63,10 @@ async function updateCartQuantity(req, res){
 
         res.send({
             message: 'Successfully update cart!',
+            data: {
+                quantity: cart.quantity,
+                is_enabled: cart.is_enabled
+            }
         });
     }else{
         res.status(401).send({
