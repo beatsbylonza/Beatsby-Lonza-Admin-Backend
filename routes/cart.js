@@ -57,7 +57,7 @@ async function updateCartQuantity(req, res){
 
     if(cart){
         cart.quantity = req.body.quantity;
-        cart.is_enabled = req.body.isEnabled;
+        cart.is_enabled = req.body.is_enabled;
 
         await cart.save();
 
