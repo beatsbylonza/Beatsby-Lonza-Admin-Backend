@@ -165,7 +165,7 @@ async function createNewCart(req, res, next){
                 price: product.price,
             },
             
-            is_enabled: true,
+            is_enabled: false,
             quantity,
         });
 
