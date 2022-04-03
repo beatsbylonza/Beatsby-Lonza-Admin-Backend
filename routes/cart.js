@@ -111,8 +111,6 @@ router.post('/add',
 
 /** Validators */
 check('product_id').exists(),
-check('size').exists(),
-check('color').exists(),
 check('quantity').exists().isInt().custom((value, {req}) => value > 0),
 
 function (req, res, next){
