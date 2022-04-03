@@ -139,7 +139,7 @@ async function checkIfCartIsAlreadyExisting(req, res, next){
     });
 
     if(cart){
-        cart.quantity += cart.quantity;
+        cart.quantity += req.body.quantity;
         await cart.save();
         
         res.send({
