@@ -133,9 +133,10 @@ async function checkIfCartIsAlreadyExisting(req, res, next){
     const { product_id } = req.body;
 
     const cart = await Cart.findOne({ 
-        user_id: user._id ,'product.product_id' :  product_id,
-        size: req.body.size,
-        color: req.body.color,
+        user_id: user._id ,
+        'product.product_id' :  product_id,
+        'product.size': req.body.size,
+        'product.color': req.body.color,
     });
 
     if(cart){
