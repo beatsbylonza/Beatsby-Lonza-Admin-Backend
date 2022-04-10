@@ -1,0 +1,201 @@
+[
+  {
+    "_id": "0d9d30ef-0a35-43c4-b0da-f81a7bcb97d3",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Register",
+    "url": "http://localhost:3000/api/register",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-04-02T04:08:54.087Z",
+    "modified": "2022-04-02T04:37:19.148Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n\t\"email\" : \"customer@test.com\",\n\t\"username\" : \"customer\",\n\t\"password\" : \"12345\",\n\t\"firstName\" : \"Andy\",\n\t\"middleName\" : \"Reyes\",\n\t\"lastName\" : \"Castro\",\n    \"contactNumber\" : \"09084741500\",\n    \"address\" : {\n        \"city\" : \"Manila\",\n        \"state\" : \"Metro Manila\",\n        \"street\" : \"Lakandula Street\",\n        \"zipcode\" : \"1012\"\n    }\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a7446a91-00fc-4779-a688-35241703376a",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Get all products",
+    "url": "http://localhost:3000/api/products/",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-04-02T04:12:14.434Z",
+    "modified": "2022-04-02T04:45:27.027Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQ3Y2Q1NjgyM2Q1NjQwOGZmNjNlNGQiLCJlbWFpbCI6ImN1c3RvbWVyQHRlc3QuY29tIiwiY29udGFjdE51bWJlciI6IjA5MDg0NzQxNTAwIiwiZmlyc3ROYW1lIjoiQW5keSIsIm1pZGRsZU5hbWUiOiJSZXllcyIsImxhc3ROYW1lIjoiQ2FzdHJvIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0ODg3Mjc5MCwiZXhwIjoxNjUxNDY0NzkwfQ.8nVHDpJzft4-Aqtt_OVDCqxER57Y2E1uuzYvYFT0HTM"
+    },
+    "tests": []
+  },
+  {
+    "_id": "edfabd1f-dd1c-4977-86c3-4f3001b22313",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Get product",
+    "url": "http://localhost:3000/api/products/6247d711e3af8028fa048620",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2022-04-02T04:17:00.843Z",
+    "modified": "2022-04-02T04:57:23.184Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQ3Y2Q1NjgyM2Q1NjQwOGZmNjNlNGQiLCJlbWFpbCI6ImN1c3RvbWVyQHRlc3QuY29tIiwiY29udGFjdE51bWJlciI6IjA5MDg0NzQxNTAwIiwiZmlyc3ROYW1lIjoiQW5keSIsIm1pZGRsZU5hbWUiOiJSZXllcyIsImxhc3ROYW1lIjoiQ2FzdHJvIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0ODg3Mjc5MCwiZXhwIjoxNjUxNDY0NzkwfQ.8nVHDpJzft4-Aqtt_OVDCqxER57Y2E1uuzYvYFT0HTM"
+    },
+    "tests": []
+  },
+  {
+    "_id": "74cd0f85-24c0-49d9-bc38-8d0575da7bfd",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Login",
+    "url": "http://localhost:3000/api/login",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-04-02T04:22:38.054Z",
+    "modified": "2022-04-02T16:34:15.927Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"customer@test.com\",\n    \"password\" : \"12345\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "2f37d364-b893-4f3c-b1e1-6f4c91e8658c",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Admin login",
+    "url": "http://localhost:3000/api/login/admin",
+    "method": "POST",
+    "sortNum": 35000,
+    "created": "2022-04-02T04:34:43.952Z",
+    "modified": "2022-04-02T04:58:15.480Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\" : \"12345\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "74579901-224b-46a6-8279-f05978051107",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Get all customers",
+    "url": "http://localhost:3000/api/customers",
+    "method": "GET",
+    "sortNum": 100000,
+    "created": "2022-04-02T04:57:53.703Z",
+    "modified": "2022-04-02T04:58:23.101Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQ3ZDJkNjhhZDQyMzAzYjA4ODBiZjciLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImNvbnRhY3ROdW1iZXIiOiIwOTA4NDc0MTUwMCIsImZpcnN0TmFtZSI6IkFkbWluIiwibWlkZGxlTmFtZSI6IkFkbWluIiwibGFzdE5hbWUiOiJBZG1pbiIsImlzX2FkbWluIjp0cnVlLCJpYXQiOjE2NDg4NzU0OTUsImV4cCI6MTY1MTQ2NzQ5NX0.EUqTNkE0rPEWD-SATd2MywwiNjiSx97IPYAxdddgtNE"
+    },
+    "tests": []
+  },
+  {
+    "_id": "e5e06cee-92cc-4f57-acb2-325892f3d751",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Update user",
+    "url": "http://localhost:3000/api/users/update",
+    "method": "PUT",
+    "sortNum": 110000,
+    "created": "2022-04-02T07:26:52.349Z",
+    "modified": "2022-04-02T08:38:32.221Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"username\" : \"customer\",\n\t\"firstName\" : \"gdsagdasg\",\n\t\"middleName\" : \"Hatdog\",\n\t\"lastName\" : \"Castro\",\n    \"contactNumber\" : \"09084741500\",\n    \"address\" : {\n        \"city\" : \"Laspinas\",\n        \"state\" : \"Metro Manila\",\n        \"street\" : \"Lakandula Street\",\n        \"zipcode\" : \"1012\"\n    }\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQ3ZDMwMDhhZDQyMzAzYjA4ODBiZmQiLCJlbWFpbCI6ImN1c3RvbWVyQHRlc3QuY29tIiwiY29udGFjdE51bWJlciI6IjA5MDg0NzQxNTAwIiwiZmlyc3ROYW1lIjoiQW5keSIsIm1pZGRsZU5hbWUiOiJSZXllcyIsImxhc3ROYW1lIjoiQ2FzdHJvIiwiYWRkcmVzcyI6eyJjaXR5IjoiTWFuaWxhIiwic3RhdGUiOiJNZXRybyBNYW5pbGEiLCJzdHJlZXQiOiJMYWthbmR1bGEgU3RyZWV0IiwiemlwY29kZSI6IjEwMTIifSwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE2NDg4ODQ0NjIsImV4cCI6MTY1MTQ3NjQ2Mn0.-jUU9Vgg8uQ1CJcPinAduCtTF-EbOROAUyEoS5Js80Y"
+    },
+    "tests": []
+  },
+  {
+    "_id": "da2c6477-cdef-4554-8dfc-aa9540265f43",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Place order",
+    "url": "http://localhost:3000/api/transactions/place-order",
+    "method": "POST",
+    "sortNum": 120000,
+    "created": "2022-04-02T16:29:17.794Z",
+    "modified": "2022-04-02T17:14:57.522Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"mode_of_payment\": \"COD\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQ4N2ZlMjk2NDE0ODY5NWI5ZDQ1MTgiLCJlbWFpbCI6ImN1c3RvbWVyQHRlc3QuY29tIiwidXNlcm5hbWUiOiJjdXN0b21lciIsImNvbnRhY3ROdW1iZXIiOiIwOTA4NDc0MTUwMCIsImZpcnN0TmFtZSI6IkFuZHkiLCJtaWRkbGVOYW1lIjoiUmV5ZXMiLCJsYXN0TmFtZSI6IkNhc3RybyIsImFkZHJlc3MiOnsiY2l0eSI6Ik1hbmlsYSIsInN0YXRlIjoiTWV0cm8gTWFuaWxhIiwic3RyZWV0IjoiTGFrYW5kdWxhIFN0cmVldCIsInppcGNvZGUiOiIxMDEyIn0sImlzX2FkbWluIjpmYWxzZSwiaWF0IjoxNjQ4OTE4NDk4LCJleHAiOjE2NTE1MTA0OTh9.cruhUqYrq1S2qnojqZ_y9U5iCnrjxmQoMwpg5nwUeCQ"
+    },
+    "tests": []
+  },
+  {
+    "_id": "a2360384-a49b-4710-be93-f534ceb68f2e",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Add to cart",
+    "url": "http://localhost:3000/api/carts/add",
+    "method": "POST",
+    "sortNum": 130000,
+    "created": "2022-04-02T16:34:56.081Z",
+    "modified": "2022-04-03T12:54:52.345Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"product_id\": \"62488005964148695b9d451b\",\n    \"quantity\": 3,\n    \"size\": \"SM\",\n    \"color\": \"BLACK\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjQ4N2ZlMjk2NDE0ODY5NWI5ZDQ1MTgiLCJlbWFpbCI6ImN1c3RvbWVyQHRlc3QuY29tIiwidXNlcm5hbWUiOiJjdXN0b21lciIsImNvbnRhY3ROdW1iZXIiOiIwOTA4NDc0MTUwMCIsImZpcnN0TmFtZSI6IkFuZHkiLCJtaWRkbGVOYW1lIjoiUmV5ZXMiLCJsYXN0TmFtZSI6IkNhc3RybyIsImFkZHJlc3MiOnsiY2l0eSI6Ik1hbmlsYSIsInN0YXRlIjoiTWV0cm8gTWFuaWxhIiwic3RyZWV0IjoiTGFrYW5kdWxhIFN0cmVldCIsInppcGNvZGUiOiIxMDEyIn0sImlzX2FkbWluIjpmYWxzZSwiaWF0IjoxNjQ4OTE4NDk4LCJleHAiOjE2NTE1MTA0OTh9.cruhUqYrq1S2qnojqZ_y9U5iCnrjxmQoMwpg5nwUeCQ"
+    },
+    "tests": []
+  },
+  {
+    "_id": "84cc1b43-1d02-4ff4-945b-1ef34e0c5cc4",
+    "colId": "69edaefb-150d-480e-9723-8c5e10ecb551",
+    "containerId": "",
+    "name": "Create payment intent",
+    "url": "http://localhost:3000/api/stripe/create-payment-intent",
+    "method": "POST",
+    "sortNum": 140000,
+    "created": "2022-04-10T13:39:08.389Z",
+    "modified": "2022-04-10T13:44:23.569Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"paymentMethodType\": \"card\",\n    \"currency\" : \"usd\"\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]
