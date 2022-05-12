@@ -63,12 +63,12 @@
     "method": "POST",
     "sortNum": 30000,
     "created": "2022-04-02T04:22:38.054Z",
-    "modified": "2022-04-02T16:34:15.927Z",
+    "modified": "2022-05-12T13:38:17.077Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"customer@test.com\",\n    \"password\" : \"12345\"\n}",
+      "raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\" : \"12345\"\n}",
       "form": []
     },
     "tests": []
